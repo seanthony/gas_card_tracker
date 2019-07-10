@@ -65,11 +65,6 @@ def make_payment_line(gas_cards_due, new_total):
     return '{}, paid ${}, {}\n'.format(date, payment, new_mileage)
 
 
-def update_mileage_tracker(filename, payment_line):
-    with open(filename, 'a') as file:
-        file.write(payment_line)
-
-
 def main():
     sys('clear')
     filename = 'mileage_tracker.txt'
@@ -87,7 +82,7 @@ def main():
         print('you are eligible for {} gas cards.'.format(gas_cards_due))
         if check_redeem_info():
             payment_line = make_payment_line(gas_cards_due, new_total)
-            update_mileage_tracker(filename, payment_line)
+            append_line_to_file(filename, payment_line)
             print('mileage tracker updated')
         else:
             print('thank you have a nice day!')
